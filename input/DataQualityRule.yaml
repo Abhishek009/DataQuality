@@ -1,0 +1,38 @@
+processName: df1
+
+validationRules:
+    - schemaName: indian_premier_league
+      tableName: ipl_matches
+      validationGranualityLevel: table
+      isRuleActive: true
+      totalCountGte: 100
+      errorLevel: error/warn
+      filterCondition: [date='2017-04-05',team1='Sunrisers Hyderabad']
+
+    - schemaName: indian_premier_league
+      tableName: ipl_matches
+      validationGranualityLevel: column
+      columnName: city
+      isRuleActive: true
+      completeness: 98
+      
+
+    - schemaName: indian_premier_league
+      tableName: ipl_matches
+      validationGranualityLevel: column
+      columnName: XYZ
+      isRuleActive: false
+      totalCountGte: SOMEVALUE
+      totalCountLte: SOMEVALUE
+      totalCountEquals: SOMEVALUE
+      totalCountBtw: SOMEVALUE
+      completeness: SOMEVALUE
+      uniqueness: SOMEVALUE
+      hasSelectiveValue: SOMEVALUE
+      hasMin: SOMEVALUE
+      hasMax: SOMEVALUE
+      nonNegative: SOMEVALUE
+      withinRange: SOMEVALUE
+      customSql: Mention Your sql
+      errorLevel: error/warn
+      filterCondition: [team1='Sunrisers Hyderabad']
