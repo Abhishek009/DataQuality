@@ -27,7 +27,7 @@ object RunValidation {
   var output: ListBuffer[dqOutputTable] = ListBuffer();
   
   def validate(sparkSession: SparkSession, yaml: Configuration): Any = {
-    val process_name=yaml.processname
+    val process_name=yaml.processName
    
     yaml.validationRules.foreach(
       validationConfig => (
@@ -107,7 +107,6 @@ object RunValidation {
           }
 
         }))
-
   }
 
 }

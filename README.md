@@ -1,4 +1,4 @@
-# DataQuality
+# DataQuality - Validate your data everyday when it is loaded
 
 A approach to validate the data stored in your Databases/Warehouse. 
 
@@ -50,15 +50,11 @@ validationRules:
 ## Roadmap
 
 ### Sql Validation
-
-
-
 - completeness
 - totalCountGte
 - totalCountLte
 - totalCountEquals
 - totalCountBtw
-- completeness
 - uniqueness
 - hasSelectiveValue 
 - hasMin

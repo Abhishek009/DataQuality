@@ -25,15 +25,14 @@ object CommonUtils {
     whereCondition: String): DataFrame = {
 
     val sql = s"Select * from ${schemaName}.${tableName} where ${whereCondition}"
-    //sparkSession.sql(sql);
-    sparkSession.read.format("csv").option("header", value = true).load("""D:\\SampleData\\IPL\\matches.csv""");
+    sparkSession.sql(sql);
+    //sparkSession.read.format("csv").option("header", value = true).load("""./test-data/matches.csv""");
   }
 
   def jsonPrint(yaml: Configuration): Any = {
-    println(yaml.processname)
+    println(yaml.processName)
     yaml.validationRules.foreach(
       f =>
-
         println(f.schemaName.getOrElse("") + System.lineSeparator() +
           f.tableName.getOrElse("") + System.lineSeparator() +
           f.validationGranualityLevel.getOrElse("") + System.lineSeparator() +
