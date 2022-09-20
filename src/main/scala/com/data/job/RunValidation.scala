@@ -39,6 +39,7 @@ object RunValidation {
           val data = CommonUtils.createDataFrame(sparkSession, validationConfig.schemaName.get, validationConfig.tableName.get, whereCondition)
           log.info(s"Dataframe created ${data}")
           
+          // Check if validation config is completeness
           CommonUtils.isEmpty(validationConfig.completeness.getOrElse("")) match {
              case true => {
             
@@ -52,9 +53,7 @@ object RunValidation {
           }
           
           
-          /*
-           * Check for Total Count Greater
-           */
+          //Check for Total Count Greater
           CommonUtils.isEmpty(validationConfig.totalCountGte.getOrElse("")) match {
             case true => {
               log.info("totalCountGte have Value")

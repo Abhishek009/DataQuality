@@ -8,10 +8,11 @@ package object test {
     
     val sparkSession = Job.createSparkSession("DataTest","local")
     
-    val df = sparkSession.read.format("csv").option("header", value = true).load("D:\\SampleData\\IPL\\matches.csv");
+    val df = sparkSession.read.format("csv").option("header", value = true).load("./test-data/matches.csv");
     df.show()
     try {
-    /* var comp = ValidationFunction.completenessCheck(sparkSession, df, "city","100")*/
+    /*val completenessCheck = new Completeness(sparkSession,df,validationConfig,"df")
+    completenessCheck.run()*/
      
     } catch {
       case e: Exception => {

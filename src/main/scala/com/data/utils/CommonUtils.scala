@@ -26,6 +26,7 @@ object CommonUtils {
 
     val sql = s"Select * from ${schemaName}.${tableName} where ${whereCondition}"
     sparkSession.sql(sql);
+    //For testing
     //sparkSession.read.format("csv").option("header", value = true).load("""./test-data/matches.csv""");
   }
 

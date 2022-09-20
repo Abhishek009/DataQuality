@@ -32,6 +32,7 @@ class Completeness(
     log.info(s"notNullCount ${notNullCount}")
     log.info(s"${completnessPercent}")
     log.info(s"${dqOutputTable}")
+    
     if (completnessPercent >= completenessCondition.toDouble) {
       log.info("success")
 
