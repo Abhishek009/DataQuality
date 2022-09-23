@@ -27,32 +27,34 @@ object RunValidation {
   var output: ListBuffer[dqOutputTable] = ListBuffer();
   
   def validate(sparkSession: SparkSession, yaml: Configuration): Any = {
-    val process_name=yaml.processName
+    val processName=yaml.processName.get
+    val schemaName = yaml.schemaName.get
+    val tableName = yaml.tableName.get
    
     yaml.validationRules.foreach(
       validationConfig => (
-         if (validationConfig.isRuleActive.getOrElse("").equalsIgnoreCase("True")) {
+         if (validationConfig.isRuleActive.getOrElse("").equalsIgnoreCase("True")) { 
 
           var whereCondition = CommonUtils.getWhereCondition(validationConfig.filterCondition)
           log.info(s"Condition being applied ${whereCondition}")
-          
-          val data = CommonUtils.createDataFrame(sparkSession, validationConfig.schemaName.get, validationConfig.tableName.get, whereCondition)
+
+          val data = CommonUtils.createDataFrame(sparkSession, schemaName, tableName, whereCondition)
           log.info(s"Dataframe created ${data}")
-          
+
           // Check if validation config is completeness
           CommonUtils.isEmpty(validationConfig.completeness.getOrElse("")) match {
              case true => {
-            
-                val completenessCheck = new Completeness(sparkSession,data,validationConfig,process_name)
+
+                val completenessCheck = new Completeness(sparkSession,data,validationConfig,processName)
                 completenessCheck.run()
-                
+
             }
             case false => {
               log.info("Completeness Dont have Value")
             }
           }
-          
-          
+
+
           //Check for Total Count Greater
           CommonUtils.isEmpty(validationConfig.totalCountGte.getOrElse("")) match {
             case true => {
@@ -73,7 +75,7 @@ object RunValidation {
             case false => { log.info("totalCountBtw Dont have Value") }
           }
 
-          
+
 
           CommonUtils.isEmpty(validationConfig.uniqueness.getOrElse("")) match {
             case true => { log.info(" uniqueness Has Value") }
@@ -105,7 +107,7 @@ object RunValidation {
             case false => { log.info("customSql Dont have Value") }
           }
 
-        }))
+         }))
   }
 
 }

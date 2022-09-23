@@ -2,8 +2,6 @@ package com.data.configuration
 
 case class ValidationConfiguration(
        
-    var schemaName: Option[String],
-    var tableName: Option[String],
     var validationGranualityLevel : Option[String],
     var columnName: Option[String],
     var isRuleActive : Option[String],

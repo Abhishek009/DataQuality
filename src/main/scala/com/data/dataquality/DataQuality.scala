@@ -46,6 +46,7 @@ object DataQuality {
       val jsonObj = mapper.readTree(jsonString)
       log.info("YAML Config File: "+jsonObj.toPrettyString())
 
+      CommonUtils.jsonPrint(yaml)
       // Creating spark session
       val sparkSession = Job.createSparkSession(jobName,runMode)
 

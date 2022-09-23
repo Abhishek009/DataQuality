@@ -24,18 +24,20 @@ object CommonUtils {
     tableName: String,
     whereCondition: String): DataFrame = {
 
-    val sql = s"Select * from ${schemaName}.${tableName} where ${whereCondition}"
-    sparkSession.sql(sql);
+    //val sql = s"Select * from ${schemaName}.${tableName} where ${whereCondition}"
+    //sparkSession.sql(sql);
     //For testing
-    //sparkSession.read.format("csv").option("header", value = true).load("""./test-data/matches.csv""");
+    sparkSession.read.format("csv").option("header", value = true).load("""./test-data/matches.csv""");
   }
 
   def jsonPrint(yaml: Configuration): Any = {
-    println(yaml.processName)
+    println(yaml.processName.get)
+    println(yaml.schemaName.get)
+    println(yaml.tableName.get)
+    
     yaml.validationRules.foreach(
       f =>
-        println(f.schemaName.getOrElse("") + System.lineSeparator() +
-          f.tableName.getOrElse("") + System.lineSeparator() +
+        println(
           f.validationGranualityLevel.getOrElse("") + System.lineSeparator() +
           f.columnName.getOrElse("") + System.lineSeparator() +
           f.isRuleActive.getOrElse("") + System.lineSeparator() +
@@ -71,14 +73,14 @@ object CommonUtils {
   }
 
   def convertToList(rowData: ValidationConfiguration, rule: String, processName: String): dqOutputTable = {
-    dqOutputTable(processName, rowData.schemaName.get,
+    /*dqOutputTable(processName, rowData.schemaName.get,
       rowData.tableName.get,
       rowData.validationGranualityLevel.get,
       rowData.columnName.get,
       rule,
       rowData.errorLevel.get.toLowerCase(),
-      "", "", "")
-
+      "", "", "")*/
+???
   }
 
   //Generate UUID for the jobs
