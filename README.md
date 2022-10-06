@@ -8,27 +8,23 @@ To run DataQuality you must first define 1 files.
 
 ```yaml
 processName: df1
+schemaName: indian_premier_league
+tableName: ipl_matches
 
 validationRules:
-    - schemaName: indian_premier_league
-      tableName: ipl_matches
-      validationGranualityLevel: table
+    - validationGranualityLevel: table
       isRuleActive: true
       totalCountGte: 100
       errorLevel: error/warn
       filterCondition: [date='2017-04-05',team1='Sunrisers Hyderabad']
 
-    - schemaName: indian_premier_league
-      tableName: ipl_matches
-      validationGranualityLevel: column
+    - validationGranualityLevel: column
       columnName: city
       isRuleActive: true
       completeness: 99
       
 
-    - schemaName: indian_premier_league
-      tableName: ipl_matches
-      validationGranualityLevel: column
+    - validationGranualityLevel: column
       columnName: XYZ
       isRuleActive: false
       totalCountGte: SOMEVALUE
